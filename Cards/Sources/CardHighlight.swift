@@ -38,7 +38,7 @@ import UIKit
     /**
      Text of the subtitle label of the item at the bottom.
      */
-    @IBInspectable public var itemSubtitle: String = "Flap that !" {
+    @IBInspectable public var itemSubtitle: String = "Flappy" {
         didSet{
             itemSubtitleLbl.text = itemSubtitle
         }
@@ -46,7 +46,7 @@ import UIKit
     /**
      Max font size the subtitle label of the item at the bottom.
      */
-    @IBInspectable public var itemSubtitleSize: CGFloat = 14
+    @IBInspectable public var itemSubtitleSize: CGFloat = 26
     /**
      Image displayed in the icon ImageView.
      */
@@ -78,7 +78,9 @@ import UIKit
     
     //Priv Vars
     private var iconIV = UIImageView()
-    private var actionBtn = UIButton()
+   public var actionBtn = UIButton()
+    public var movieID = String()
+
     private var titleLbl = UILabel ()
     private var itemTitleLbl = UILabel()
     private var itemSubtitleLbl = UILabel()
@@ -141,7 +143,8 @@ import UIKit
         itemTitleLbl.adjustsFontSizeToFitWidth = true
         itemTitleLbl.minimumScaleFactor = 0.1
         itemTitleLbl.lineBreakMode = .byTruncatingTail
-        itemTitleLbl.numberOfLines = 0
+        itemTitleLbl.numberOfLines = 2
+        itemTitleLbl.sizeToFit()
 
         itemSubtitleLbl.textColor = textColor
         itemSubtitleLbl.text = itemSubtitle
