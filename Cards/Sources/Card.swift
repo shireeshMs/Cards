@@ -111,7 +111,11 @@ import UIKit
             detailVC.detailView = content.view
             detailVC.card = self
             detailVC.delegate = self.delegate
-            detailVC.isFullscreen = fullscreen
+            if #available(iOS 13.0, *) {
+                detailVC.modalPresentationStyle = .fullScreen
+            } else {
+                // Fallback on earlier versions
+            }
         }
     }
     /**
@@ -139,7 +143,7 @@ import UIKit
     var originalFrame = CGRect.zero
     public var backgroundIV = UIImageView()
     public var insets = CGFloat()
-    var isPresenting = false
+   public var isPresenting = false
     
     //MARK: - View Life Cycle
     
@@ -159,7 +163,7 @@ import UIKit
         // Tap gesture init
         self.addGestureRecognizer(tap)
         tap.delegate = self
-        tap.cancelsTouchesInView = false
+        tap.cancelsTouchesInView = true
        
         detailVC.transitioningDelegate = self
         
@@ -291,7 +295,7 @@ extension Card: UIGestureRecognizerDelegate {
 }
 
 
-	//MARK: - Helpers
+    //MARK: - Helpers
 
 extension Card {
     
@@ -313,3 +317,4 @@ extension UILabel {
     }
     
 }
+
